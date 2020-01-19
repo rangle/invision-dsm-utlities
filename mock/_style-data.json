@@ -1,0 +1,121 @@
+{
+	"lookup": {
+		"colors": {
+			"primary": {
+				"name": "primary",
+				"value": "#f2bd1d"
+			},
+			"secondary": {
+				"name": "secondary",
+				"value": "#a67458"
+			},
+			"white": {
+				"name": "white",
+				"value": "#ffffff"
+			},
+			"black": {
+				"name": "black",
+				"value": "#000000"
+			}
+		},
+		"fonts": {
+			"didot": {
+				"name": "Didot",
+				"family": "Didot",
+				"variants": [
+					{
+						"fontStyle": "normal",
+						"fontWeight": 400
+					},
+					{
+						"fontStyle": "italic",
+						"fontWeight": 400
+					},
+					{
+						"fontStyle": "normal",
+						"fontWeight": "bold"
+					}
+				]
+			},
+			"arial": {
+				"name": "Arial",
+				"family": "Arial",
+				"variants": [
+					{
+						"fontStyle": "normal",
+						"fontWeight": 400
+					},
+					{
+						"fontStyle": "italic",
+						"fontWeight": 400
+					},
+					{
+						"fontStyle": "normal",
+						"fontWeight": "bold"
+					},
+					{
+						"fontStyle": "italic",
+						"fontWeight": "bold"
+					}
+				]
+			}
+		},
+		"typeStyles": {
+			"year": {
+				"fontSize": "18px",
+				"lineHeight": "normal",
+				"textAlign": "start",
+				"color": "#ffffff",
+				"fontStyle": "normal",
+				"fontWeight": "bold",
+				"fontFamily": "Didot",
+				"name": "Year",
+				"backgroundColor": null
+			},
+			"heading": {
+				"fontSize": "48px",
+				"lineHeight": "normal",
+				"textAlign": "start",
+				"color": "#000000",
+				"fontStyle": "normal",
+				"fontWeight": "bold",
+				"fontFamily": "Didot",
+				"name": "Heading",
+				"backgroundColor": null
+			},
+			"body": {
+				"fontSize": "14px",
+				"lineHeight": "normal",
+				"textAlign": "left",
+				"color": "#262626",
+				"fontStyle": "normal",
+				"fontWeight": "400",
+				"fontFamily": "Arial",
+				"name": "Body",
+				"backgroundColor": null
+			},
+			"location": {
+				"fontSize": "21px",
+				"lineHeight": "normal",
+				"textAlign": "left",
+				"color": "#000000",
+				"fontStyle": "normal",
+				"fontWeight": "400",
+				"fontFamily": "Didot",
+				"name": "Location",
+				"backgroundColor": null
+			},
+			"tagline": {
+				"fontSize": "16px",
+				"lineHeight": "normal",
+				"textAlign": "right",
+				"color": "#000000",
+				"fontStyle": "normal",
+				"fontWeight": "400",
+				"fontFamily": "Didot",
+				"name": "Tagline",
+				"backgroundColor": null
+			}
+		}
+	}
+}
