@@ -4,18 +4,19 @@
   "description": "Utilities to integrate InVision DSM with front-end.",
   "scripts": {
     "build": "babel src --out-dir lib",
-    "demo:transform": "babel-node -- ./bin/transform-to-theme -s ./mock/_style-data.json -d ./src/theme.dsm.js"
+    "demo:transform": "babel-node -- ./src/transform-to-theme -s ./mock/_style-data.json -d ./src/theme.dsm.js",
+    "demo:download": "babel-node -- ./src/download-design-tokens -s 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' -d ./src/_style-data.json"
   },
   "engines": {
     "node": ">=8.10.0"
   },
   "bin":{
-    "transform-to-theme": "./lib/transform-to-theme.js"
+    "transform-to-theme": "./lib/transform-to-theme.js",
+    "download-design-tokens": "./lib/download-design-tokens.js"
   },
   "author": "Chris DePaul",
   "license": "MIT",
   "dependencies": {
-    "app-root-path": "^3.0.0",
     "babel-plugin-codegen": "^3.1.0",
     "minimist": "^1.2.0"
   },

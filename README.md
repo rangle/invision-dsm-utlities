@@ -1,4 +1,4 @@
-## How to use
+## How to use transform-to-theme
 
 _Temporary Solution_
 
