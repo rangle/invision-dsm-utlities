@@ -1,36 +1,40 @@
+#!/usr/bin/env node
+
 /**
  *
  * Next Steps:
  * 4. Create a couple theme based transformations and output file
- * 5. Create a mobile package
- * 6. Send to Varun
  */
 
 const fs = require('fs');
-const appRoot = require('app-root-path');
 const parsedArgs = require('minimist')(process.argv.slice(2));
 const babel = require('@babel/core');
 
+const callingDir = process.cwd();
+
+// Theme Transformations
 const { colors } = require('./transforms/colors');
 const { fontSizes } = require('./transforms/fontSizes');
 
+// Handle CLI input
 const { s: source, d: destination } = parsedArgs;
-
 let sourceTrimmed = source[0] === '.' ? source.slice(1) : source;
 
-const data = require(appRoot + sourceTrimmed).lookup;
+// Get Data
+const data = require(callingDir + sourceTrimmed).lookup;
 
+// Call Transformations
 const colorsTheme = colors(data.colors);
 const fontSizesTheme = fontSizes(data.typeStyles);
 
+// Create Theme
 const theme = {
     colors: colorsTheme,
     fontSizes: fontSizesTheme
 };
 
-const code = `
-    module.exports = ${JSON.stringify(theme)};
-`;
+// Create Code
+const code = `module.exports = ${JSON.stringify(theme)};`;
 
 babel.transform(code, {
     plugins: ['codegen'],
