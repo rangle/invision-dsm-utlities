@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "utilities to help integrate InVision DSM with your front-end.",
   "scripts": {
-    "demo:transform": "babel-node -- ./src/transform-to-theme -s ./mock/_style-data.json -d ./src/theme.dsm.js",
+    "demo:transform": "babel-node -- ./src/transform-to-theme -s ./mock/_style-data.json -d ./src/theme.dsm.js"
   },
   "author": "Chris DePaul",
   "license": "MIT",
