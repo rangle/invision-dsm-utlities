@@ -1,7 +1,7 @@
 {
   "name": "invision-dsm-utils",
   "version": "0.1.0",
-  "description": "utilities to integrate InVision DSM with front-end.",
+  "description": "Utilities to integrate InVision DSM with front-end.",
   "scripts": {
     "build": "babel src --out-dir lib",
     "demo:transform": "babel-node -- ./bin/transform-to-theme -s ./mock/_style-data.json -d ./src/theme.dsm.js"
