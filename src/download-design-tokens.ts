@@ -14,11 +14,11 @@
  * }
  */
 
-const fs = require('fs');
-const https = require('https');
-const parsedArgs = require('minimist')(process.argv.slice(2));
+import fs from 'fs';
+import https from 'https';
 
-let { s: source, d: destination } = parsedArgs;
+import minimist from 'minimist';
+const { s: source, d: destination } = minimist(process.argv.slice(2));
 
 if (!source) {
     console.error('Missing InVision URL (e.g. -s https://...)');
@@ -29,8 +29,6 @@ if (!destination) {
     console.error('Missing write path (e.g. -d /my.css)');
     process.exit(0);
 }
-
-// destination = destination[0] === '.' ? destination.slice(1) : destination;
 
 https
     .get(source, (res: any) => {
