@@ -33,7 +33,7 @@ if (!destination) {
 // destination = destination[0] === '.' ? destination.slice(1) : destination;
 
 https
-    .get(source, res => {
+    .get(source, (res: any) => {
         if(res.statusCode !== 200) {
             return;
         }

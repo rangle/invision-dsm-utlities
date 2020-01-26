@@ -18,10 +18,10 @@
  *
  */
 
-export const fontSizes = (og) => {
+export const fontSizes = (og: any) => {
     if (!og) {
         return;
     }
 
-    return Object.values(og).map(val => val.fontSize.slice(0, -2)).map(val => parseInt(val)).sort();
+    return Object.values(og).map((val: any) => val.fontSize.slice(0, -2)).map(val => parseInt(val)).sort();
 };

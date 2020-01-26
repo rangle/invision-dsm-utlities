@@ -21,13 +21,13 @@
  *
  */
 
-export const colors = (og) => {
+export const colors = (og: any) => {
     if (!og) {
         return;
     }
 
-    const ogEntries = Object.entries(og);
-    const colors = {};
+    const ogEntries: any = Object.entries(og);
+    const colors: any = {};
 
     for (const entry of ogEntries) {
         const { name, value} = entry[1];
