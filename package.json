@@ -5,7 +5,6 @@
   "scripts": {
     "build": "npm run build-ts",
     "build-ts": "tsc",
-    "watch-ts": "tsc -w",
     "demo:transform": "node -- ./dist/transform-to-theme -s ./mock/_style-data.json -d ./src/theme.dsm.js",
     "demo:download": "node -- ./dist/download-design-tokens -s 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' -d ./src/_style-data.json"
   },
@@ -13,13 +12,14 @@
     "node": ">=8.10.0"
   },
   "bin": {
-    "transform-to-theme": "./lib/transform-to-theme.js",
-    "download-design-tokens": "./lib/download-design-tokens.js"
+    "transform-to-theme": "./dist/transform-to-theme.js",
+    "download-design-tokens": "./dist/download-design-tokens.js"
   },
   "author": "Chris DePaul",
   "license": "MIT",
   "dependencies": {
     "babel-plugin-codegen": "^3.1.0",
+    "commander": "^4.1.0",
     "minimist": "^1.2.0"
   },
   "peerDependencies": {
