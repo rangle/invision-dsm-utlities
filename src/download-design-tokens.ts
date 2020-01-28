@@ -5,10 +5,7 @@ import https from 'https';
 import * as commander from 'commander';
 import { IncomingMessage } from "http";
 
-type Input = {
-    source: string;
-    destination: string
-}
+import { CommandLineTransformInput } from "./types";
 
 // Event Handlers
 const errorHandler = (e: any) => {
@@ -40,7 +37,7 @@ const main = async () => {
     program
         .requiredOption('-s, --source <source>', 'source url')
         .requiredOption('-d, --destination <destination>', 'write to file path')
-        .action(async ({ source, destination }: Input) =>
+        .action(async ({ source, destination }: CommandLineTransformInput) =>
             https
                 .get(source, writeResponseToFile(destination))
                 .on('error', errorHandler)
