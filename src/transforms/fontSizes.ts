@@ -18,7 +18,12 @@
  *
  */
 
-export const fontSizes = (og: any) => {
+import { TypeStylesDesignTokens } from "../types";
+import { Theme } from "styled-system";
+
+type FontSizesTheme = Theme['fontSizes'];
+
+export const fontSizes = (og: TypeStylesDesignTokens): FontSizesTheme => {
     if (!og) {
         return;
     }

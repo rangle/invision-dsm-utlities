@@ -20,18 +20,21 @@
  *  }
  *
  */
+import { ColorsDesignTokens } from "../types";
+import { Theme } from "styled-system";
 
-export const colors = (og: any) => {
+type ColorsTheme = Theme['colors'];
+
+export const colors = (og: ColorsDesignTokens): ColorsTheme => {
     if (!og) {
         return;
     }
 
-    const ogEntries: any = Object.entries(og);
-    const colors: any = {};
+    const ogEntries = Object.entries(og);
+    const colors: ColorsTheme = {};
 
-    for (const entry of ogEntries) {
-        const { name, value} = entry[1];
-        colors[name] = value;
+    for (const [colorName, color] of ogEntries) {
+        colors[colorName] = color.value;
     }
 
     return colors

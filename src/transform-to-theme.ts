@@ -5,10 +5,9 @@ import path from 'path';
 import * as commander from 'commander';
 import * as babel from '@babel/core';
 import { Theme } from 'styled-system';
-import { CommandLineDownloadInput, DesignTokensJSONLookup } from "./types";
+import { CommandLineDownloadInput, DesignTokensResponse } from "./types";
 
-const { colors } = require('./transforms/colors');
-const { fontSizes } = require('./transforms/fontSizes');
+import { colors, fontSizes } from './transforms';
 
 // Event Handlers
 const errorHandler = (e: any) => {
@@ -57,7 +56,7 @@ const main = async () => {
             const source = path.normalize(path.join(callingDir, sourceInput));
 
             // Get data
-            const designTokens: DesignTokensJSONLookup = require(source);
+            const designTokens: DesignTokensResponse = require(source);
             const data = designTokens.lookup;
 
             // Call Transformations
