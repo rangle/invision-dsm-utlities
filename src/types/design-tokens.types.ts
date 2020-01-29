@@ -1,6 +1,8 @@
+import * as CSS from "csstype";
+
 export type ColorDesignTokens = {
     name: string;
-    value: string
+    value: CSS.ColorProperty;
 }
 
 export type ColorsDesignTokens = {
@@ -8,13 +10,13 @@ export type ColorsDesignTokens = {
 }
 
 export type FontVariantDesignTokens = {
-    fontStyle: string;
-    fontWeight: string | number;
+    fontStyle: CSS.FontStyleProperty;
+    fontWeight: CSS.FontWeightProperty;
 }
 
 export type FontDesignTokens = {
     name: string;
-    family: string;
+    family: CSS.FontFamilyProperty;
     variants: FontVariantDesignTokens[];
 }
 
@@ -23,15 +25,15 @@ export type FontsDesignTokens = {
 }
 
 export type TypeStyleDesignTokens = {
-    fontSize: string;
-    lineHeight: string;
-    textAlign: string;
-    color: string;
-    fontStyle: string;
-    fontWeight: string;
-    fontFamily: string;
+    fontSize: CSS.FontSizeProperty<number>;
+    lineHeight: CSS.LineHeightProperty<{}>;
+    textAlign: CSS.TextAlignProperty;
+    color: CSS.ColorProperty;
+    fontStyle: CSS.FontStyleProperty;
+    fontWeight: CSS.FontWeightProperty;
+    fontFamily: CSS.FontFamilyProperty;
     name: string;
-    backgroundColor: string | null;
+    backgroundColor: CSS.ColorProperty;
 }
 
 export type TypeStylesDesignTokens = {

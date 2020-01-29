@@ -1,2 +1,4 @@
-export * from './colors';
-export * from './fontSizes';
+export * from './colors.transform';
+export * from './fontSizes.transform';
+export * from './fonts.transform';
+export * from './lineHeights.transform';

@@ -23,7 +23,7 @@ import { Theme } from "styled-system";
 
 type FontSizesTheme = Theme['fontSizes'];
 
-export const fontSizes = (og: TypeStylesDesignTokens): FontSizesTheme => {
+export const fontSizesTransform = (og: TypeStylesDesignTokens): FontSizesTheme => {
     if (!og) {
         return;
     }

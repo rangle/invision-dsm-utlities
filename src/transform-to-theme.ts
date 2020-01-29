@@ -7,7 +7,11 @@ import * as babel from '@babel/core';
 import { Theme } from 'styled-system';
 import { CommandLineDownloadInput, DesignTokensResponse } from "./types";
 
-import { colors, fontSizes } from './transforms';
+import {
+    colorsTransform,
+    fontSizesTransform,
+    fontsTransform, lineHeightsTransform
+} from './transforms';
 
 // Event Handlers
 const errorHandler = (e: any) => {
@@ -60,13 +64,17 @@ const main = async () => {
             const data = designTokens.lookup;
 
             // Call Transformations
-            const colorsTheme = colors(data.colors);
-            const fontSizesTheme = fontSizes(data.typeStyles);
+            const colorsTheme = colorsTransform(data.colors);
+            const fontSizesTheme = fontSizesTransform(data.typeStyles);
+            const fontsTheme = fontsTransform(data.typeStyles);
+            const lineHeightTheme = lineHeightsTransform(data.typeStyles);
 
             // Create Theme
             const theme: Theme = {
                 colors: colorsTheme,
-                fontSizes: fontSizesTheme
+                fontSizes: fontSizesTheme,
+                fonts: fontsTheme,
+                lineHeights: lineHeightTheme
             };
 
             // Generate Code

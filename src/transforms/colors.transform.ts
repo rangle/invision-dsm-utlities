@@ -25,7 +25,7 @@ import { Theme } from "styled-system";
 
 type ColorsTheme = Theme['colors'];
 
-export const colors = (og: ColorsDesignTokens): ColorsTheme => {
+export const colorsTransform = (og: ColorsDesignTokens): ColorsTheme => {
     if (!og) {
         return;
     }
