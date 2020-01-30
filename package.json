@@ -6,7 +6,8 @@
     "build": "npm run build-ts",
     "build-ts": "tsc",
     "demo:transform": "node -- ./dist/cli --transform ./mock/_style-data.json --out-file ./src/theme.dsm.js",
-    "demo:download": "node -- ./dist/cli --download 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' --out-file ./src/_style-data.json"
+    "demo:download": "node -- ./dist/cli --download 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' --out-file ./src/_style-data.json",
+    "demo:break": "node -- ./dist/cli --download x --transform y --out-file z"
   },
   "engines": {
     "node": ">=8.10.0"
