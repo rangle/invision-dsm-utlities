@@ -5,15 +5,14 @@
   "scripts": {
     "build": "npm run build-ts",
     "build-ts": "tsc",
-    "demo:transform": "node -- ./dist/transform-to-theme -s ./mock/_style-data.json -d ./src/theme.dsm.js",
-    "demo:download": "node -- ./dist/download-design-tokens -s 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' -d ./src/_style-data.json"
+    "demo:transform": "node -- ./dist/cli --transform ./mock/_style-data.json --out-file ./src/theme.dsm.js",
+    "demo:download": "node -- ./dist/cli --download 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' --out-file ./src/_style-data.json"
   },
   "engines": {
     "node": ">=8.10.0"
   },
   "bin": {
-    "transform-to-theme": "./dist/transform-to-theme.js",
-    "download-design-tokens": "./dist/download-design-tokens.js"
+    "invision-utils-cli": "./dist/cli.js"
   },
   "author": "Chris DePaul",
   "license": "MIT",

@@ -2,10 +2,9 @@
 
 import fs from 'fs';
 import path from 'path';
-import * as commander from 'commander';
 import * as babel from '@babel/core';
 import { Theme } from 'styled-system';
-import { CommandLineDownloadInput, DesignTokensResponse } from "./types";
+import { CommandLineTransformInput, DesignTokensResponse } from "./types";
 
 import {
     colorsTransform,
@@ -16,12 +15,6 @@ import {
     colorStylesTransform,
     textStylesTransform
 } from './transforms';
-
-// Event Handlers
-const errorHandler = (e: any) => {
-    console.error(e);
-    process.exit(0);
-};
 
 // Generate Code
 const generateCode = async (theme: Theme): Promise<string> => {
@@ -51,58 +44,44 @@ const writeFile = async (destination: string, code: string): Promise<void> => {
 
 }
 
-const main = async () => {
-    const program = new commander.Command();
-    program.version('0.1.0');
+export const transformToTheme = async (
+    { filePathToTransform, outFile }: CommandLineTransformInput
+) => {
 
-    program
-        .requiredOption('-s, --source <source>', 'source file path')
-        .requiredOption('-d, --destination <destination>', 'write to file path')
-        .action(async ({ source: sourceInput, destination}: CommandLineDownloadInput) => {
-            // Get source input path
-            const callingDir = process.cwd();
-            const source = path.normalize(path.join(callingDir, sourceInput));
+    console.log(outFile);
+    // Get source input path
+    const callingDir = process.cwd();
+    const source = path.normalize(path.join(callingDir, filePathToTransform));
 
-            // Get data
-            const designTokens: DesignTokensResponse = require(source);
-            const data = designTokens.lookup;
+    // Get data
+    const designTokens: DesignTokensResponse = require(source);
+    const data = designTokens.lookup;
 
-            // Call Transformations
-            const colorsTheme = colorsTransform(data.colors);
-            const fontSizesTheme = fontSizesTransform(data.typeStyles);
-            const fontsTheme = fontsTransform(data.typeStyles);
-            const lineHeightsTheme = lineHeightsTransform(data.typeStyles);
-            const fontWeightsTheme = fontWeightsTransform(data.fonts);
-            const textStylesTheme = textStylesTransform(data.typeStyles);
-            const colorStylesTheme = colorStylesTransform(data.colors);
+    // Call Transformations
+    const colorsTheme = colorsTransform(data.colors);
+    const fontSizesTheme = fontSizesTransform(data.typeStyles);
+    const fontsTheme = fontsTransform(data.typeStyles);
+    const lineHeightsTheme = lineHeightsTransform(data.typeStyles);
+    const fontWeightsTheme = fontWeightsTransform(data.fonts);
+    const textStylesTheme = textStylesTransform(data.typeStyles);
+    const colorStylesTheme = colorStylesTransform(data.colors);
 
-            // Create Theme
-            const theme: Theme = {
-                colors: colorsTheme,
-                fontSizes: fontSizesTheme,
-                fonts: fontsTheme,
-                lineHeights: lineHeightsTheme,
-                fontWeights: fontWeightsTheme,
-                textStyles: textStylesTheme,
-                colorStyles: colorStylesTheme
-            };
+    // Create Theme
+    const theme: Theme = {
+        colors: colorsTheme,
+        fontSizes: fontSizesTheme,
+        fonts: fontsTheme,
+        lineHeights: lineHeightsTheme,
+        fontWeights: fontWeightsTheme,
+        textStyles: textStylesTheme,
+        colorStyles: colorStylesTheme
+    };
 
-            // Generate Code
-            const code = await generateCode(theme);
+    // Generate Code
+    const code = await generateCode(theme);
 
-            // Write File
-            await writeFile(destination, code);
+    // Write File
+    await writeFile(outFile, code);
 
-            console.log(`Successfully created ${destination}.`);
-
-        });
-
-    try {
-        await program.parseAsync(process.argv);
-    }
-    catch (error) {
-        errorHandler(error)
-    }
+    console.log(`Successfully created ${outFile}.`);
 };
-
-main();

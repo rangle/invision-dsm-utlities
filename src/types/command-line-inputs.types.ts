@@ -1,9 +1,9 @@
 export type CommandLineDownloadInput = {
-    source: string;
-    destination: string
+    url: string;
+    outFile: string
 }
 
 export type CommandLineTransformInput = {
-    source: string;
-    destination: string
+    filePathToTransform: string;
+    outFile: string
 }
