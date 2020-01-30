@@ -12,7 +12,9 @@ import {
     fontSizesTransform,
     fontsTransform,
     fontWeightsTransform,
-    lineHeightsTransform
+    lineHeightsTransform,
+    colorStylesTransform,
+    textStylesTransform
 } from './transforms';
 
 // Event Handlers
@@ -71,6 +73,8 @@ const main = async () => {
             const fontsTheme = fontsTransform(data.typeStyles);
             const lineHeightsTheme = lineHeightsTransform(data.typeStyles);
             const fontWeightsTheme = fontWeightsTransform(data.fonts);
+            const textStylesTheme = textStylesTransform(data.typeStyles);
+            const colorStylesTheme = colorStylesTransform(data.colors);
 
             // Create Theme
             const theme: Theme = {
@@ -78,7 +82,9 @@ const main = async () => {
                 fontSizes: fontSizesTheme,
                 fonts: fontsTheme,
                 lineHeights: lineHeightsTheme,
-                fontWeights: fontWeightsTheme
+                fontWeights: fontWeightsTheme,
+                textStyles: textStylesTheme,
+                colorStyles: colorStylesTheme
             };
 
             // Generate Code

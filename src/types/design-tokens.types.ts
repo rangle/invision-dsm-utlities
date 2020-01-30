@@ -2,17 +2,17 @@ import * as CSS from "csstype";
 
 export type ColorDesignTokens = {
     name: string;
-    value: CSS.ColorProperty;
+    value: Pick<CSS.StandardProperties, 'color'>
 }
 
 export type ColorsDesignTokens = {
     [name: string]: ColorDesignTokens;
 }
 
-export type FontVariantDesignTokens = {
-    fontStyle: CSS.FontStyleProperty;
-    fontWeight: CSS.FontWeightProperty;
-}
+export type FontVariantDesignTokens = Pick<
+    CSS.StandardProperties,
+    'fontStyle' | 'fontWeight'
+>;
 
 export type FontDesignTokens = {
     name: string;
@@ -24,16 +24,11 @@ export type FontsDesignTokens = {
     [name: string]: FontDesignTokens;
 }
 
-export type TypeStyleDesignTokens = {
-    fontSize: CSS.FontSizeProperty<number>;
-    lineHeight: CSS.LineHeightProperty<{}>;
-    textAlign: CSS.TextAlignProperty;
-    color: CSS.ColorProperty;
-    fontStyle: CSS.FontStyleProperty;
-    fontWeight: CSS.FontWeightProperty;
-    fontFamily: CSS.FontFamilyProperty;
+export type TypeStyleDesignTokens = Pick<
+    CSS.StandardProperties,
+    'fontSize' | 'lineHeight' | 'textAlign' | 'color' | 'fontStyle' | 'fontWeight' | 'fontFamily'
+    > & {
     name: string;
-    backgroundColor: CSS.ColorProperty;
 }
 
 export type TypeStylesDesignTokens = {
