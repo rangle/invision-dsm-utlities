@@ -47,15 +47,19 @@ const writeFile = async (destination: string, code: string): Promise<void> => {
 export const transformToTheme = async (
     { inFile, outFile }: CommandLineTransformInput
 ) => {
-
-    console.log(outFile);
     // Get source input path
     const callingDir = process.cwd();
     const source = path.normalize(path.join(callingDir, inFile));
 
     // Get data
     const designTokens: DesignTokensResponse = require(source);
+
+    // Extract design tokens
     const data = designTokens.lookup;
+
+    if (!data) {
+        console.error('Design tokens file is not a lookup response.');
+    }
 
     // Call Transformations
     const colorsTheme = colorsTransform(data.colors);
@@ -83,5 +87,7 @@ export const transformToTheme = async (
     // Write File
     await writeFile(outFile, code);
 
-    console.log(`Successfully created ${outFile}.`);
+    console.log(`Theme written to ${outFile}`);
+
+    return Promise.resolve();
 };

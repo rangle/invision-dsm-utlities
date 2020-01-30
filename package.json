@@ -14,7 +14,7 @@
     "node": ">=8.10.0"
   },
   "bin": {
-    "invision-utils-cli": "./dist/cli.js"
+    "invision-utils": "./dist/cli.js"
   },
   "author": "Chris DePaul",
   "license": "MIT",
