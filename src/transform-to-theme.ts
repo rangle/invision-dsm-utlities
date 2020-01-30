@@ -10,7 +10,9 @@ import { CommandLineDownloadInput, DesignTokensResponse } from "./types";
 import {
     colorsTransform,
     fontSizesTransform,
-    fontsTransform, lineHeightsTransform
+    fontsTransform,
+    fontWeightsTransform,
+    lineHeightsTransform
 } from './transforms';
 
 // Event Handlers
@@ -67,14 +69,16 @@ const main = async () => {
             const colorsTheme = colorsTransform(data.colors);
             const fontSizesTheme = fontSizesTransform(data.typeStyles);
             const fontsTheme = fontsTransform(data.typeStyles);
-            const lineHeightTheme = lineHeightsTransform(data.typeStyles);
+            const lineHeightsTheme = lineHeightsTransform(data.typeStyles);
+            const fontWeightsTheme = fontWeightsTransform(data.fonts);
 
             // Create Theme
             const theme: Theme = {
                 colors: colorsTheme,
                 fontSizes: fontSizesTheme,
                 fonts: fontsTheme,
-                lineHeights: lineHeightTheme
+                lineHeights: lineHeightsTheme,
+                fontWeights: fontWeightsTheme
             };
 
             // Generate Code
