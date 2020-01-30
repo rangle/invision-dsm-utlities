@@ -1,44 +1,44 @@
 import * as CSS from "csstype";
 
-export type ColorDesignTokens = {
+export type DTName = {
     name: string;
+}
+
+export type ColorDT = {
     value: Pick<CSS.StandardProperties, 'color'>
-}
+} & DTName;
 
-export type ColorsDesignTokens = {
-    [name: string]: ColorDesignTokens;
-}
-
-export type FontVariantDesignTokens = Pick<
+export type FontVariantDT = Pick<
     CSS.StandardProperties,
     'fontStyle' | 'fontWeight'
->;
+    >;
 
-export type FontDesignTokens = {
-    name: string;
-    family: CSS.FontFamilyProperty;
-    variants: FontVariantDesignTokens[];
-}
-
-export type FontsDesignTokens = {
-    [name: string]: FontDesignTokens;
-}
-
-export type TypeStyleDesignTokens = Pick<
+export type TypeStyleDT = Pick<
     CSS.StandardProperties,
     'fontSize' | 'lineHeight' | 'textAlign' | 'color' | 'fontStyle' | 'fontWeight' | 'fontFamily'
-    > & {
-    name: string;
+    > & DTName;
+
+export type FontDT = {
+    family: CSS.FontFamilyProperty;
+    variants: FontVariantDT[];
+} & DTName;
+
+export type ColorsDT = {
+    [name: string]: ColorDT;
 }
 
-export type TypeStylesDesignTokens = {
-    [name: string]: TypeStyleDesignTokens;
+export type FontsDT = {
+    [name: string]: FontDT;
+}
+
+export type TypeStylesDT = {
+    [name: string]: TypeStyleDT;
 }
 
 export type DesignTokens = {
-    colors: ColorsDesignTokens;
-    fonts: FontsDesignTokens;
-    typeStyles: TypeStylesDesignTokens;
+    colors: ColorsDT;
+    fonts: FontsDT;
+    typeStyles: TypeStylesDT;
 }
 
 export type DesignTokensResponse = {

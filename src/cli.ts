@@ -10,32 +10,30 @@ const errorHandler = (e: any) => {
 
 const main = async () => {
     const program = new commander.Command();
-    program.version('0.1.0');
 
     program
-        .option('-d, --download <url>', 'download url')
-        .option('-t, --transform <filePathToTransform>', 'path to file to transform')
-        .option('-o, --out-file <outFilePath>', 'output file path')
-        .action(async ( { download: url, transform: filePathToTransform, outFile } ) => {
-            if (url && filePathToTransform) {
-                console.error('You can only perform one action at a time.');
-                process.exit(0);
-            }
+        .command('download')
+        .description('download a file from InVision DSM')
+        .requiredOption('-d, --url <url>', 'download url')
+        .requiredOption('-o, --out-file <outFilePath>', 'output file path')
+        .action(async ( { url, outFile } ) => {
+            await downloadDesignTokens({ url, outFile });
+        });
 
-            if (url) {
-                await downloadDesignTokens({ url, outFile });
-            } else if (filePathToTransform) {
-                await transformToTheme({ filePathToTransform, outFile})
-            }
-
-            console.log('Operation completed.');
+    program
+        .command('transform')
+        .description('transform a lookup JSON file from InVision DSM into a Style System Theme')
+        .requiredOption('-d, --in-file <url>', 'input JSON file')
+        .requiredOption('-o, --out-file <outFilePath>', 'output file path', './theme.dms.js')
+        .action(async ({ inFile, outFile }) => {
+            await transformToTheme({ inFile, outFile});
         });
 
     try {
         await program.parseAsync(process.argv);
     }
     catch (error) {
-        errorHandler(error)
+        errorHandler(error);
     }
 };
 

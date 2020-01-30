@@ -4,6 +4,6 @@ export type CommandLineDownloadInput = {
 }
 
 export type CommandLineTransformInput = {
-    filePathToTransform: string;
+    inFile: string;
     outFile: string
 }

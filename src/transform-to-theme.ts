@@ -45,13 +45,13 @@ const writeFile = async (destination: string, code: string): Promise<void> => {
 }
 
 export const transformToTheme = async (
-    { filePathToTransform, outFile }: CommandLineTransformInput
+    { inFile, outFile }: CommandLineTransformInput
 ) => {
 
     console.log(outFile);
     // Get source input path
     const callingDir = process.cwd();
-    const source = path.normalize(path.join(callingDir, filePathToTransform));
+    const source = path.normalize(path.join(callingDir, inFile));
 
     // Get data
     const designTokens: DesignTokensResponse = require(source);

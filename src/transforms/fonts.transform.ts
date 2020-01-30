@@ -1,9 +1,9 @@
-import { TypeStylesDesignTokens } from "../types";
+import { TypeStylesDT } from "../types";
 import { Theme } from "styled-system";
 
 type FontsTheme = Theme['fonts'];
 
-export const fontsTransform = (og: TypeStylesDesignTokens): FontsTheme => {
+export const fontsTransform = (og: TypeStylesDT): FontsTheme => {
     if (!og) {
         return;
     }

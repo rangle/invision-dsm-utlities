@@ -1,9 +1,9 @@
-import { TypeStylesDesignTokens } from "../types";
+import { TypeStylesDT } from "../types";
 import { Theme } from "styled-system";
 
 type FontSizesTheme = Theme['fontSizes'];
 
-export const fontSizesTransform = (og: TypeStylesDesignTokens): FontSizesTheme => {
+export const fontSizesTransform = (og: TypeStylesDT): FontSizesTheme => {
     if (!og) {
         return;
     }

@@ -1,9 +1,9 @@
-import { ColorsDesignTokens } from "../types";
+import { ColorsDT } from "../types";
 import { Theme } from "styled-system";
 
 type ColorsTheme = Theme['colors'];
 
-export const colorsTransform = (og: ColorsDesignTokens): ColorsTheme => {
+export const colorsTransform = (og: ColorsDT): ColorsTheme => {
     if (!og) {
         return;
     }

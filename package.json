@@ -5,9 +5,10 @@
   "scripts": {
     "build": "npm run build-ts",
     "build-ts": "tsc",
-    "demo:transform": "node -- ./dist/cli --transform ./mock/_style-data.json --out-file ./src/theme.dsm.js",
-    "demo:download": "node -- ./dist/cli --download 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' --out-file ./src/_style-data.json",
-    "demo:break": "node -- ./dist/cli --download x --transform y --out-file z"
+    "demo:download": "ts-node -- ./src/cli download --url 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' --out-file ./src/_style-data.json",
+    "demo:transform": "ts-node -- ./src/cli transform --in-file ./mock/_style-data.json --out-file ./src/theme.dsm.js",
+    "demo:transform-default": "ts-node -- ./src/cli transform --in-file ./mock/_style-data.json"
+
   },
   "engines": {
     "node": ">=8.10.0"
@@ -34,6 +35,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.0",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   }
 }

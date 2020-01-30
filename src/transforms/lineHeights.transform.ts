@@ -1,9 +1,9 @@
-import { TypeStylesDesignTokens } from "../types";
+import { TypeStylesDT } from "../types";
 import { Theme } from "styled-system";
 
 type LineHeightsTheme = Theme['lineHeights'];
 
-export const lineHeightsTransform = (og: TypeStylesDesignTokens): LineHeightsTheme => {
+export const lineHeightsTransform = (og: TypeStylesDT): LineHeightsTheme => {
     if (!og) {
         return;
     }
