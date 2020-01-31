@@ -6,10 +6,11 @@ import { IncomingMessage } from "http";
 
 import { CommandLineDownloadInput } from "./types";
 
-const writeResponseToFile = (filePath: string) => (res: IncomingMessage) => {
+export const writeResponseToFile = (filePath: string) => (res: IncomingMessage) => {
     if (res.statusCode !== 200) {
         console.error('Network request failed.');
         process.exit(0);
+        return;
     }
 
     res

@@ -42,14 +42,21 @@ const writeFile = async (destination: string, code: string): Promise<void> => {
         })
     });
 
-}
+};
+
+export const getSourcePath = (inFile: string, callingDir: string) => {
+    return path.normalize(path.join(callingDir, inFile));
+};
+
+export const isValidLookupFile = (obj: any) => {
+    return Boolean(obj.lookup);
+};
 
 export const transformToTheme = async (
     { inFile, outFile }: CommandLineTransformInput
 ) => {
     // Get source input path
-    const callingDir = process.cwd();
-    const source = path.normalize(path.join(callingDir, inFile));
+    const source = getSourcePath(inFile, process.cwd());
 
     // Get data
     const designTokens: DesignTokensResponse = require(source);
@@ -57,7 +64,7 @@ export const transformToTheme = async (
     // Extract design tokens
     const data = designTokens.lookup;
 
-    if (!data) {
+    if (!isValidLookupFile(data)) {
         console.error('Design tokens file is not a lookup response.');
     }
 

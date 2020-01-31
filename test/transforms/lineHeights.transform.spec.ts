@@ -1,4 +1,4 @@
-import {fontsTransform, lineHeightsTransform} from "../../src/transforms";
+import {lineHeightsTransform} from "../../src/transforms";
 
 describe('lineHeights transform', () => {
     let designTokens: any;
