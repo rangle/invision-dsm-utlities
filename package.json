@@ -5,13 +5,13 @@
   "scripts": {
     "build": "npm run build-ts",
     "build-ts": "tsc",
+    "test": "jest",
     "demo:download": "ts-node -- ./src/cli download --url 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' --out-file ./src/_style-data.json",
     "demo:transform": "ts-node -- ./src/cli transform --in-file ./mock/_style-data.json --out-file ./src/theme.dsm.js",
     "demo:transform-default": "ts-node -- ./src/cli transform --in-file ./mock/_style-data.json"
-
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=10.13.0"
   },
   "bin": {
     "invision-utils": "./dist/cli.js"
@@ -27,7 +27,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/babel__core": "^7.1.3",
+    "@types/jest": "^25.1.1",
     "@types/node": "^13.5.0",
     "@types/styled-system": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^2.17.0",
@@ -35,7 +38,11 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.0",
+    "jest": "^25.1.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
+  },
+  "jest": {
+    "testRegex": "(/test/.*\\.spec\\.[tj]s)$"
   }
 }
