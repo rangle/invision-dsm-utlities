@@ -5,7 +5,7 @@ export type DTName = {
 }
 
 export type ColorDT = {
-    value: Pick<CSS.StandardProperties, 'color'>
+    value: CSS.StandardProperties['color']
 } & DTName;
 
 export type FontVariantDT = Pick<

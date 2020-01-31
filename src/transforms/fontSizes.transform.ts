@@ -8,5 +8,18 @@ export const fontSizesTransform = (og: TypeStylesDT): FontSizesTheme => {
         return;
     }
 
-    return Object.values(og).map((val: any) => val.fontSize.slice(0, -2)).map(val => parseInt(val)).sort();
+    const ogEntries = Object.entries(og);
+    const fontSizesSet = new Set();
+
+    for (const [_, typeStyle] of ogEntries) {
+        const val = typeStyle.fontSize === 0 ?
+            typeStyle.fontSize :
+            parseInt(typeStyle.fontSize.slice(0, -2));
+
+        fontSizesSet.add(val);
+    }
+
+    const fontSizes = <FontSizesTheme>Array.from(fontSizesSet).sort();
+
+    return fontSizes;
 };
