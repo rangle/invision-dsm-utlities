@@ -23,6 +23,8 @@ const generateCode = async (theme: Theme): Promise<string> => {
 
         babel.transform(codegenString, {
             plugins: ['codegen'],
+            filename: 'abc.js',  // requires any filename to work,
+            sourceType: "script"
         }, (err, result) => {
             if (err) {
                 reject(err);
@@ -61,12 +63,12 @@ export const transformToTheme = async (
     // Get data
     const designTokens: DesignTokensResponse = require(source);
 
+    if (!isValidLookupFile(designTokens)) {
+        throw 'Design tokens file is not a lookup response.';
+    }
+
     // Extract design tokens
     const data = designTokens.lookup;
-
-    if (!isValidLookupFile(data)) {
-        console.error('Design tokens file is not a lookup response.');
-    }
 
     // Call Transformations
     const colorsTheme = colorsTransform(data.colors);

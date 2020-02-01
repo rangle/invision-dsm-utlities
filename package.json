@@ -1,17 +1,13 @@
 {
   "name": "invision-dsm-utils",
   "version": "0.1.0",
-  "description": "Utilities to integrate InVision DSM with front-end.",
+  "description": "Utilities to integrate InVision DSM with front-end codebase.",
   "scripts": {
-    "build": "npm run build-ts",
-    "build-ts": "tsc",
-    "test": "jest",
-    "demo:download": "ts-node -- ./src/cli download --url 'https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/style-data.json?exportFormat=lookup&key=Hk4MnZ1bU' --out-file ./src/_style-data.json",
-    "demo:transform": "ts-node -- ./src/cli transform --in-file ./mock/_style-data.json --out-file ./src/theme.dsm.js",
-    "demo:transform-default": "ts-node -- ./src/cli transform --in-file ./mock/_style-data.json"
+    "build": "tsc",
+    "test": "jest"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=8.0.0"
   },
   "bin": {
     "invision-utils": "./dist/cli.js"
