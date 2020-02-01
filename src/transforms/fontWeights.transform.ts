@@ -1,24 +1,23 @@
 import { FontsDT } from "../types";
 import { Theme } from "styled-system";
 
-type FontWeightsTheme = Theme['fontWeights'];
+type FontWeightsTheme = Theme["fontWeights"];
 
 export const fontWeightsTransform = (og: FontsDT): FontWeightsTheme => {
-    if (!og) {
-        return;
-    }
+  if (!og) {
+    return;
+  }
 
-    const ogEntries = Object.entries(og);
-    const fontWeightsSet = new Set();
+  const ogEntries = Object.entries(og);
+  const fontWeightsSet = new Set();
 
-    for (const [fontName, font] of ogEntries) {
-        font.variants.forEach((variant) => {
-            fontWeightsSet.add(variant.fontWeight);
-        })
-    }
+  for (const [, font] of ogEntries) {
+    font.variants.forEach(variant => {
+      fontWeightsSet.add(variant.fontWeight);
+    });
+  }
 
-    const fontWeights = <FontWeightsTheme>Array.from(fontWeightsSet).sort();
+  const fontWeights = Array.from(fontWeightsSet).sort() as FontWeightsTheme;
 
-    return fontWeights
+  return fontWeights;
 };
-

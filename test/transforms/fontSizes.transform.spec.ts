@@ -1,28 +1,30 @@
-import {fontSizesTransform} from "../../src/transforms";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-describe('fontSizes transform', () => {
-    let designTokens: any;
+import { fontSizesTransform } from "../../src/transforms";
 
-    beforeEach(() => {
-        designTokens = {};
-    });
+describe("fontSizes transform", () => {
+  let designTokens: any;
 
-    it('should return undefined when input is undefined', () => {
-        const result = fontSizesTransform(designTokens.typeStyles);
-        expect(result).toBeUndefined();
-    });
+  beforeEach(() => {
+    designTokens = {};
+  });
 
-    it('should return an object matching the styled system them ui spec for fontSizes, with unique values and sorted', () => {
-        designTokens = {
-            typeStyles: {
-                name1: {fontSize: '8px'},
-                name2: {fontSize: '6px'},
-                name3: {fontSize: '4px'},
-                name4: {fontSize: '8px'},
-            }
-        };
+  it("should return undefined when input is undefined", () => {
+    const result = fontSizesTransform(designTokens.typeStyles);
+    expect(result).toBeUndefined();
+  });
 
-        const result = fontSizesTransform(designTokens.typeStyles);
-        expect(result).toEqual([4, 6, 8]);
-    });
+  it("should return an object matching the styled system them ui spec for fontSizes, with unique values and sorted", () => {
+    designTokens = {
+      typeStyles: {
+        name1: { fontSize: "8px" },
+        name2: { fontSize: "6px" },
+        name3: { fontSize: "4px" },
+        name4: { fontSize: "8px" }
+      }
+    };
+
+    const result = fontSizesTransform(designTokens.typeStyles);
+    expect(result).toEqual([4, 6, 8]);
+  });
 });

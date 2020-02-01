@@ -1,7 +1,9 @@
 {
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["airbnb"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended"
+  ],
   "settings": {
     "import/extensions": [".js",".ts"],
     "import/parsers": {

@@ -1,20 +1,19 @@
 import { ColorsDT } from "../types";
 import { Theme } from "styled-system";
 
-type ColorsTheme = Theme['colors'];
+type ColorsTheme = Theme["colors"];
 
 export const colorsTransform = (og: ColorsDT): ColorsTheme => {
-    if (!og) {
-        return;
-    }
+  if (!og) {
+    return;
+  }
 
-    const ogEntries = Object.entries(og);
-    const colors: ColorsTheme = {};
+  const ogEntries = Object.entries(og);
+  const colors: ColorsTheme = {};
 
-    for (const [colorName, color] of ogEntries) {
-        colors[colorName] = color.value;
-    }
+  for (const [colorName, color] of ogEntries) {
+    colors[colorName] = color.value;
+  }
 
-    return colors
+  return colors;
 };
-

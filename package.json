@@ -3,8 +3,17 @@
   "version": "0.1.0",
   "description": "Utilities to integrate InVision DSM with front-end codebase.",
   "scripts": {
+    "clean": "rimraf dist",
     "build": "tsc",
-    "test": "jest"
+    "pretest": "npm run build",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "test:cov": "npm test -- --coverage",
+    "lint": "eslint --ext js,ts src test",
+    "check-types": "tsc --noEmit",
+    "prettier": "prettier --write \"{src,test}/**/*.{js,ts}\"",
+    "prettier:check": "prettier --check \"{src,test}/**/*.{js,ts}\"",
+    "prepare": "npm run clean && npm run check-types && npm run prettier:check && npm run lint && npm run test"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -32,9 +41,9 @@
     "@typescript-eslint/eslint-plugin": "^2.17.0",
     "@typescript-eslint/parser": "^2.17.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.20.0",
     "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   },

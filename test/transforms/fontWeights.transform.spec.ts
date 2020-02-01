@@ -1,30 +1,32 @@
-import {fontWeightsTransform} from "../../src/transforms";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-describe('fontWeights transform', () => {
-    let designTokens: any;
+import { fontWeightsTransform } from "../../src/transforms";
 
-    beforeEach(() => {
-        designTokens = {};
-    });
+describe("fontWeights transform", () => {
+  let designTokens: any;
 
-    it('should return undefined when input is undefined', () => {
-        const result = fontWeightsTransform(designTokens.fonts);
-        expect(result).toBeUndefined();
-    });
+  beforeEach(() => {
+    designTokens = {};
+  });
 
-    it('should return an object matching the styled system them ui spec for fontWeights, with unique values and sorted', () => {
-        designTokens = {
-            fonts: {
-                name1: {
-                    variants: [ { fontWeight: 100 }, { fontWeight: 200 } ]
-                },
-                name2: {
-                    variants: [ { fontWeight: 200 }, { fontWeight: 400 } ]
-                }
-            }
-        };
+  it("should return undefined when input is undefined", () => {
+    const result = fontWeightsTransform(designTokens.fonts);
+    expect(result).toBeUndefined();
+  });
 
-        const result = fontWeightsTransform(designTokens.fonts);
-        expect(result).toEqual([100, 200, 400])
-    });
+  it("should return an object matching the styled system them ui spec for fontWeights, with unique values and sorted", () => {
+    designTokens = {
+      fonts: {
+        name1: {
+          variants: [{ fontWeight: 100 }, { fontWeight: 200 }]
+        },
+        name2: {
+          variants: [{ fontWeight: 200 }, { fontWeight: 400 }]
+        }
+      }
+    };
+
+    const result = fontWeightsTransform(designTokens.fonts);
+    expect(result).toEqual([100, 200, 400]);
+  });
 });
