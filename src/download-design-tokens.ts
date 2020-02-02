@@ -4,7 +4,7 @@ import fs from "fs";
 import https from "https";
 import { IncomingMessage } from "http";
 
-import { CommandLineDownloadInput } from "./types";
+import { DownloadDesignTokensParams } from "./types";
 
 export const writeResponseToFile = (filePath: string) => (
   res: IncomingMessage
@@ -30,7 +30,7 @@ export const writeResponseToFile = (filePath: string) => (
 export const downloadDesignTokens = async ({
   url,
   outFile
-}: CommandLineDownloadInput): Promise<void> => {
+}: DownloadDesignTokensParams): Promise<void> => {
   https
     .get(url, writeResponseToFile(outFile))
     .on("finish", () => {
