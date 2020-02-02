@@ -21,8 +21,9 @@ export type InvisionDsmUtilsConfig = {
 // Command Line Input
 export type CommandLineDownloadInput = {
   type: FileFormat;
+  iconsOutDir: string;
   jsonExportFormat?: JsonExportFormat;
-  outFile: string;
+  outDir: string;
 };
 
 export type CommandLineTransformInput = {
@@ -36,10 +37,8 @@ export type FileFormatMap = {
 };
 
 // Scripts
-export type DownloadDesignTokensParams = Pick<
-  CommandLineDownloadInput,
-  "outFile"
-> & {
+export type DownloadParams = {
+  outFile: string;
   url: string;
 };
 
@@ -54,7 +53,21 @@ export type QueryParameters = {
   exportFormat?: JsonExportFormat;
 };
 
-export type BuildURLParams = Pick<InvisionDsmUtilsConfig, "dsmExportUrl"> & {
-  filePath: string;
+export type BuildOutFileParams = Pick<CommandLineDownloadInput, "outDir"> & {
+  fileName: string;
+};
+
+export type BuildDesignTokensURLParams = Pick<
+  InvisionDsmUtilsConfig,
+  "dsmExportUrl"
+> & {
+  fileName: string;
   queryParams: QueryParameters;
+};
+
+export type DownloadIconsURLParams = Pick<
+  InvisionDsmUtilsConfig,
+  "dsmExportUrl"
+> & {
+  key: string;
 };

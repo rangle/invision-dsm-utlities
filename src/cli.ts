@@ -2,7 +2,7 @@ import * as commander from "commander";
 import { cosmiconfig } from "cosmiconfig";
 
 import { transformToTheme } from "./transform-to-theme";
-import { downloadDesignTokens } from "./download-design-tokens";
+import { download } from "./download";
 import {
   CommandLineDownloadInput,
   CommandLineTransformInput,
@@ -11,18 +11,23 @@ import {
   InvisionDsmUtilsConfig,
   QueryParameters
 } from "./types";
-import { buildUrl, getExportFormat } from "./utils";
+import {
+  buildDesignTokensUrl,
+  buildIconsUrl,
+  buildOutFile,
+  getExportFormat
+} from "./utils";
 
-const fileFormatPaths: FileFormatMap = {
-  [FileFormat.CSS]: "/_style-params.css",
-  [FileFormat.SCSS]: "/_style-params.scss",
-  [FileFormat.LESS]: "/style-params.less",
-  [FileFormat.STYL]: "/style-params.styl",
-  [FileFormat.XML]: "/style-data.xml",
-  [FileFormat.JSON]: "/style-data.json",
-  [FileFormat.YAML]: "/style-data.yaml",
-  [FileFormat.ANDROID]: "/android-style-data.zip",
-  [FileFormat.IOS]: "/ios-style-data.zip"
+const fileNamesMap: FileFormatMap = {
+  [FileFormat.CSS]: "_style-params.css",
+  [FileFormat.SCSS]: "_style-params.scss",
+  [FileFormat.LESS]: "style-params.less",
+  [FileFormat.STYL]: "style-params.styl",
+  [FileFormat.XML]: "style-data.xml",
+  [FileFormat.JSON]: "style-data.json",
+  [FileFormat.YAML]: "style-data.yaml",
+  [FileFormat.ANDROID]: "android-style-data.zip",
+  [FileFormat.IOS]: "ios-style-data.zip"
 };
 
 const main = async ({
@@ -35,23 +40,46 @@ const main = async ({
     program
       .command("download")
       .description("download a file from InVision DSM")
-      .requiredOption("-t, --type <type>", "download url")
-      .requiredOption("-o, --out-file <outFilePath>", "output file path")
+      .requiredOption("-t, --type <type>", "download file type")
+      .requiredOption(
+        "-o, --out-dir <outFileDir>",
+        "design tokens file directory"
+      )
+      .option("--icons-out-dir <iconsFileDir>", "icons file directory")
       .option("--jsonExportFormat <jsonExportFormat>", "lookup or list")
       .action(
         async ({
           type,
-          outFile,
+          outDir,
+          iconsOutDir,
           jsonExportFormat
         }: CommandLineDownloadInput) => {
-          const filePath = fileFormatPaths[type];
+          const fileName = fileNamesMap[type];
 
           const exportFormat = getExportFormat({ jsonExportFormat, type });
           const queryParams: QueryParameters = { exportFormat, key };
 
-          const url = buildUrl({ dsmExportUrl, filePath, queryParams });
+          const designTokensUrl = buildDesignTokensUrl({
+            dsmExportUrl,
+            fileName,
+            queryParams
+          });
 
-          await downloadDesignTokens({ url, outFile });
+          const outFile = buildOutFile({ outDir, fileName });
+
+          await download({ url: designTokensUrl, outFile });
+
+          if (iconsOutDir) {
+            const iconsUrl = buildIconsUrl({ dsmExportUrl, key });
+            const iconsOutFile = buildOutFile({
+              outDir: iconsOutDir,
+              fileName: "icons.zip"
+            });
+            await download({
+              url: iconsUrl,
+              outFile: iconsOutFile
+            });
+          }
         }
       );
 

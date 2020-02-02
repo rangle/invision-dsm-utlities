@@ -1,9 +1,17 @@
+import * as path from "path";
 import {
-  BuildURLParams,
+  BuildDesignTokensURLParams,
+  BuildOutFileParams,
+  DownloadIconsURLParams,
   FileFormat,
   JsonExportFormat,
   SetExportFormatParams
 } from "../types";
+
+export const buildOutFile = ({
+  outDir,
+  fileName
+}: BuildOutFileParams): string => path.join(outDir, fileName);
 
 export const getExportFormat = ({
   jsonExportFormat,
@@ -17,11 +25,11 @@ export const getExportFormat = ({
   return exportFormat;
 };
 
-export const buildUrl = ({
+export const buildDesignTokensUrl = ({
   dsmExportUrl,
-  filePath,
+  fileName,
   queryParams
-}: BuildURLParams): string => {
+}: BuildDesignTokensURLParams): string => {
   const entries = Object.entries(queryParams);
   const params = [];
 
@@ -31,5 +39,12 @@ export const buildUrl = ({
 
   const queryParamsString = params.length > 0 ? `?${params.join("&")}` : "";
 
-  return `${dsmExportUrl}${filePath}${queryParamsString}`;
+  return `${dsmExportUrl}/${fileName}${queryParamsString}`;
+};
+
+export const buildIconsUrl = ({
+  dsmExportUrl,
+  key
+}: DownloadIconsURLParams): string => {
+  return `${dsmExportUrl}/icons.zip?key=${key}`;
 };

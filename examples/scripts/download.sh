@@ -2,4 +2,5 @@
 
 node ./dist/cli download \
             --type 'json' \
-            --out-file ./examples/output/_style-data.json
+            --out-dir ./examples/output \
+            --icons-out-dir ./examples/output/

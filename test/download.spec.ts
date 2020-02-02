@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { writeResponseToFile } from "../src/download-design-tokens";
+import { writeResponseToFile } from "../src/download";
 
 describe("writeResponseToFile", () => {
   const mockExit = jest.spyOn(process, "exit").mockImplementation();

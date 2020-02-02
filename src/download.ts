@@ -4,7 +4,7 @@ import fs from "fs";
 import https from "https";
 import { IncomingMessage } from "http";
 
-import { DownloadDesignTokensParams } from "./types";
+import { DownloadParams } from "./types";
 
 export const writeResponseToFile = (filePath: string) => (
   res: IncomingMessage
@@ -23,21 +23,16 @@ export const writeResponseToFile = (filePath: string) => (
       process.exit(0);
     })
     .on("finish", () => {
-      console.log(`Design Tokens saved to ${filePath}.`);
+      console.log(`File saved to ${filePath}.`);
     });
 };
 
-export const downloadDesignTokens = async ({
+export const download = async ({
   url,
   outFile
-}: DownloadDesignTokensParams): Promise<void> => {
-  https
-    .get(url, writeResponseToFile(outFile))
-    .on("finish", () => {
-      console.log("Design Tokens downloaded...");
-    })
-    .on("error", error => {
-      console.error(error);
-      process.exit(0);
-    });
+}: DownloadParams): Promise<void> => {
+  https.get(url, writeResponseToFile(outFile)).on("error", error => {
+    console.error(error);
+    process.exit(0);
+  });
 };
