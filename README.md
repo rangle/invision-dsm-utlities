@@ -9,7 +9,7 @@ Utility scripts to help integrate [InVision Design System Manager (DSM)](https:/
 * Download design token files
 * Transform design tokens into JS file that meets [Styled System Theme Specification](https://styled-system.com/theme-specification)
 
-## Installation
+## Installation (Not active, yet)
 
 ```
 npm install --dev @rangle/invision-dsm-utils
