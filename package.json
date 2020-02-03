@@ -19,8 +19,10 @@
     "node": ">=8.0.0"
   },
   "bin": {
-    "invision-utils": "./dist/cli.js"
+    "invision-dsm-utils": "./dist/cli.js"
   },
+  "files": ["/dist"],
+  "main": "./dist/cli.js",
   "author": "Chris DePaul",
   "license": "MIT",
   "dependencies": {
