@@ -19,22 +19,21 @@
     "node": ">=8.0.0"
   },
   "bin": {
-    "invision-dsm-utils": "./dist/cli.js"
+    "invision-dsm-utils": "./bin/index.js"
   },
-  "files": ["/dist"],
-  "main": "./dist/cli.js",
+  "files": [
+    "/dist", "/bin"
+  ],
+  "main": "./bin/index.js",
   "author": "Chris DePaul",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.8.4",
     "babel-plugin-codegen": "^3.1.0",
     "commander": "^4.1.0",
     "cosmiconfig": "^6.0.0"
   },
-  "peerDependencies": {
-    "@babel/core": "^7.8.3"
-  },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-typescript": "^7.8.3",
     "@types/babel__core": "^7.1.3",
