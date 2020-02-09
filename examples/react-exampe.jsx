@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ThemeProvider } from 'styled-system';
+import { ThemeProvider } from 'styled-components';
 
 import themeDSM from './output/theme.dsm';
 
