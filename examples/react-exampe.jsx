@@ -17,7 +17,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <div>Example</div>
       </ThemeProvider>
-  );
+    );
   }
 }
 
