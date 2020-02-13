@@ -63,10 +63,10 @@ invision-dsm-utils download --type <type> --out-dir <relativeOutputDirectory>
 **Optional Inputs**
 ```
 --icons-out-dir: relative path to output directory
---jsonExportFormat: lookup | list
+--json-export-format: lookup | list
 ```
 
-Note that `jsonExportFormat` is only relevant when `type` is `json`. The default value is `lookup`.
+Note that `json-export-format` is only relevant when `type` is `json`. The default value is `lookup`.
 
 Setting the `--icons-out-dir` will download a zip file of icons from the DSM.
 

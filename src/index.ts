@@ -46,7 +46,7 @@ const main = async ({
         "design tokens file directory"
       )
       .option("--icons-out-dir <iconsFileDir>", "icons file directory")
-      .option("--jsonExportFormat <jsonExportFormat>", "lookup or list")
+      .option("--json-export-format <jsonExportFormat>", "lookup or list")
       .action(
         async ({
           type,
