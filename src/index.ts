@@ -4,8 +4,6 @@ import { cosmiconfig } from "cosmiconfig";
 import { transformToTheme } from "./transform-to-theme";
 import { download } from "./download";
 import {
-  CommandLineDownloadInput,
-  CommandLineTransformInput,
   FileFormat,
   FileFormatMap,
   InvisionDsmUtilsConfig,
@@ -30,6 +28,8 @@ const fileNamesMap: FileFormatMap = {
   [FileFormat.IOS]: "ios-style-data.zip"
 };
 
+const fileTypes = Object.keys(fileNamesMap);
+
 const main = async ({
   dsmExportUrl,
   key
@@ -39,21 +39,18 @@ const main = async ({
   try {
     program
       .command("download")
-      .description("download a file from InVision DSM")
-      .requiredOption("-t, --type <type>", "download file type")
-      .requiredOption(
-        "-o, --out-dir <outFileDir>",
-        "design tokens file directory"
-      )
-      .option("--icons-out-dir <iconsFileDir>", "icons file directory")
-      .option("--json-export-format <jsonExportFormat>", "lookup or list")
+      .description("Download a file from InVision DSM")
+      .arguments("<type> <outDir>")
+      .option("--icons-out-dir [iconsOutDir]", "icons directory")
+      .option("--json-export-format [jsonExportFormat]", "lookup or list")
       .action(
-        async ({
-          type,
-          outDir,
-          iconsOutDir,
-          jsonExportFormat
-        }: CommandLineDownloadInput) => {
+        async (type: FileFormat, outDir, { iconsOutDir, jsonExportFormat }) => {
+          if (!fileTypes.includes(type)) {
+            throw `Error: ${type} is not a valid file type. Valid types are: ${fileTypes.join(
+              " | "
+            )}.`;
+          }
+
           const fileName = fileNamesMap[type];
 
           const exportFormat = getExportFormat({ jsonExportFormat, type });
@@ -86,15 +83,14 @@ const main = async ({
     program
       .command("transform")
       .description(
-        "transform a lookup JSON file from InVision DSM into a Style System Theme"
+        "Transform a lookup JSON file from InVision DSM into a Style System Theme"
       )
-      .requiredOption("-d, --in-file <url>", "input JSON file")
-      .requiredOption(
-        "-o, --out-file <outFilePath>",
-        "output file path",
-        "./theme.dms.js"
-      )
-      .action(async ({ inFile, outFile }: CommandLineTransformInput) => {
+      .arguments("<inFile> [outFile]")
+      .action(async (inFile, outFile) => {
+        if (!outFile) {
+          outFile = "theme.dsm.js";
+        }
+
         await transformToTheme({ inFile, outFile });
       });
 

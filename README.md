@@ -51,13 +51,13 @@ https://rangle.invisionapp.com/dsm-export/rangle-io/where-van-gogh/_style-params
 This is a node script that accepts inputs from the command line.
 
 ```
-invision-dsm-utils download --type <type> --out-dir <relativeOutputDirectory>
+invision-dsm-utils download <type> <outDir> [options]
 ```
 
-**Required Inputs**
+**Arguments**
 ```
---type: css | scss | less | styl | xml | json | yaml | android | ios
---out-dir: relative path to output directory
+type: css | scss | less | styl | xml | json | yaml | android | ios
+outDir: relative path to output directory
 ``` 
 
 **Optional Inputs**
@@ -75,13 +75,13 @@ Setting the `--icons-out-dir` will download a zip file of icons from the DSM.
 This is a node script that accepts inputs from the command line.
 
 ```
-invision-dsm-utils transform --in-file <relativeFilePath> --out-file <relativeFilePath>
+invision-dsm-utils transform <inFile> <outFile>
 ```
 
-**Required Inputs**
+**Arguments**
 ```
---in-file: relative path to input to design tokens in JSON lookup format
---out-file: relative path to JS file 
+inFile: relative path to input to design tokens in JSON lookup format
+outFile: relative path to JS file 
 ```
 
 The outfile can be used as a theme object for any library that supports the `Styled System Theme Specification` (e.g. [styled-system](https://styled-system.com/)).

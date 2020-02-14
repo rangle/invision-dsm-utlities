@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import * as babel from "@babel/core";
 import { Theme } from "styled-system";
-import { CommandLineTransformInput, DesignTokensResponse } from "./types";
+import { DesignTokensResponse, TranformToThemeParams } from "./types";
 
 import {
   colorsTransform,
@@ -61,7 +61,7 @@ export const isValidLookupFile = (obj: DesignTokensResponse): boolean => {
 export const transformToTheme = async ({
   inFile,
   outFile
-}: CommandLineTransformInput): Promise<void> => {
+}: TranformToThemeParams): Promise<void> => {
   // Get source input path
   const source = getSourcePath(inFile, process.cwd());
 

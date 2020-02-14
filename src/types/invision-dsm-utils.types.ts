@@ -18,19 +18,6 @@ export type InvisionDsmUtilsConfig = {
   key: string;
 };
 
-// Command Line Input
-export type CommandLineDownloadInput = {
-  type: FileFormat;
-  iconsOutDir: string;
-  jsonExportFormat?: JsonExportFormat;
-  outDir: string;
-};
-
-export type CommandLineTransformInput = {
-  inFile: string;
-  outFile: string;
-};
-
 // Main Script
 export type FileFormatMap = {
   [key in FileFormat]: string;
@@ -42,10 +29,15 @@ export type DownloadParams = {
   url: string;
 };
 
-export type SetExportFormatParams = Pick<
-  CommandLineDownloadInput,
-  "type" | "jsonExportFormat"
->;
+export type TranformToThemeParams = {
+  inFile: string;
+  outFile: string;
+};
+
+export type SetExportFormatParams = {
+  type: string;
+  jsonExportFormat: JsonExportFormat;
+};
 
 // Invision URL Query Parameters
 export type QueryParameters = {
@@ -53,7 +45,8 @@ export type QueryParameters = {
   exportFormat?: JsonExportFormat;
 };
 
-export type BuildOutFileParams = Pick<CommandLineDownloadInput, "outDir"> & {
+export type BuildOutFileParams = {
+  outDir: string;
   fileName: string;
 };
 

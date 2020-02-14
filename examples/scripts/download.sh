@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-node ./dist/ download \
-            --type 'json' \
-            --out-dir ./examples/output \
-            --icons-out-dir ./examples/output/
+node ./dist/ download json ./examples/output --icons-out-dir ./examples/output/
