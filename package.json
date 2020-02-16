@@ -1,6 +1,6 @@
 {
   "name": "invision-dsm-utils",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Utilities to integrate InVision DSM with front-end codebase.",
   "scripts": {
     "clean": "rimraf dist",
